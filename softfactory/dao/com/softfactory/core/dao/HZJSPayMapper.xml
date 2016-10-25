@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.softfactory.core.dao.HZJSPayMapper">
+
+	<resultMap type="com.softfactory.pojo.SPay" id="spay-result">
+		<id property="id" column="ID" />
+		<result property="payId" column="PAY_ID" />
+		<result property="storer" column="STORER" />
+		<result property="reason" column="REASON" />
+		<result property="reasonexact" column="REASONEXACT" />
+		<result property="amountSum" column="AMOUNT_SUM" />
+		<result property="costPriceSum" column="COST_PRICE_SUM" />
+		<result property="paidAmountSum" column="PAID_AMOUNT_SUM" />
+		<result property="remark" column="REMARK" />
+		<result property="register" column="REGISTER" />
+		<result property="registerTime" column="REGISTER_TIME" />
+		<result property="checker" column="CHECKER" />
+		<result property="checkTime" column="CHECK_TIME" />
+		<result property="checkTag" column="CHECK_TAG" />
+		<result property="attmper" column="ATTEMPER" />
+		<result property="attemperTime" column="ATTEMPER_TIME" />
+		<result property="productId" column="PRODUCT_ID" />
+		<result property="storeTag" column="STORE_TAG" />
+	</resultMap>
+
+	<sql id="pageSQLHead">
+		select ID,PAY_ID,STORER,REASON,REASONEXACT,AMOUNT_SUM,COST_PRICE_SUM,PAID_AMOUNT_SUM,REMARK,REGISTER,REGISTER_TIME,CHECKER,CHECK_TIME,CHECK_TAG,ATTEMPER,ATTEMPER_TIME,PRODUCT_ID,STORE_TAG from
+		(select
+		row_number()
+		over(
+	</sql>
+
+	<sql id="orderBy">
+		<if test="sort != null and order != null">
+			order by
+			<choose>
+				<when test="sort == 'id'">ID</when>
+				<when test="sort == 'payId'">PAY_ID</when>
+				<when test="sort == 'storer'">STORER</when>
+				<when test="sort == 'reason'">REASON</when>
+				<when test="sort == 'reasonexact'">REASONEXACT</when>
+				<when test="sort == 'amountSum'">AMOUNT_SUM</when>
+				<when test="sort == 'costPriceSum'">COST_PRICE_SUM</when>
+				<when test="sort == 'paidAmountSum'">PAID_AMOUNT_SUM</when>
+				<when test="sort == 'remark'">REMARK</when>
+				<when test="sort == 'register'">REGISTER</when>
+				<when test="sort == 'registerTime'">REGISTER_TIME</when>
+				<when test="sort == 'checker'">CHECKER</when>
+				<when test="sort == 'checkTime'">CHECK_TIME</when>
+				<when test="sort == 'checkTag'">CHECK_TAG</when>
+				<when test="sort == 'attmper'">ATTEMPER</when>
+				<when test="sort == 'attemperTime'">ATTEMPER_TIME</when>
+				<when test="sort == 'productId'">PRODUCT_ID</when>
+				<when test="sort == 'storeTag'">STORE_TAG</when>
+				<otherwise>PARENT_ID</otherwise>
+			</choose>
+
+			<if test="order == 'asc'">asc</if>
+			<if test="order == 'desc'">desc</if>
+		</if>
+	</sql>
+
+	<sql id="WhereCase">
+		<where>
+			1=1
+			<if test="ename != null and ename != ''">
+				and PARENT_ID LIKE #{parentId}
+			</if>
+		</where>
+	</sql>
+
+	<sql id="pageSQLFoot">
+    <![CDATA[ ) where rn > #{pageno} and rn <= #{pagesize} ]]>
+	</sql>
+
+	<select id="findPager" resultMap="spaydetails-result">
+		<include refid="pageSQLHead" />
+		<include refid="orderBy" />
+		) rn,e.* from S_PAY_DETAILS e
+		<include refid="WhereCase" />
+		<include refid="pageSQLFoot" />
+	</select>
+
+	<select id="findPagerTotal" resultType="long">
+		select count(parentId) from S_PAY_DETAILS
+		<include refid="WhereCase" />
+	</select>
+</mapper>
