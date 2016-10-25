@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.softfactory.pojo.Manufacture;
 
 @Repository("manufactureMapper")
-public interface ManufactureMapper {
+public interface LbManufactureMapper {
 	
 	Integer add(Manufacture manufacture);
 	
