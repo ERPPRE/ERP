@@ -25,7 +25,7 @@ public class SPayDetails implements Serializable {
 	private String payTag;//入库标志
 	private Integer demandAmountb;//已入库件数
 	private Integer realAmoutb;// 应出库件数
-	private Integer mowAmountb;// 已出库件数
+	private Integer nowAmountb;// 已出库件数
 	private Integer demandAmountAllb;// 本次出库数量
 	private Integer realAmountAllb;// 已出库总件数
 	private Integer demandSalAllb;// 应出库总件数
@@ -113,11 +113,11 @@ public class SPayDetails implements Serializable {
 	public void setRealAmoutb(Integer realAmoutb) {
 		this.realAmoutb = realAmoutb;
 	}
-	public Integer getMowAmountb() {
-		return mowAmountb;
+	public Integer getNowAmountb() {
+		return nowAmountb;
 	}
-	public void setMowAmountb(Integer mowAmountb) {
-		this.mowAmountb = mowAmountb;
+	public void setNowAmountb(Integer mowAmountb) {
+		this.nowAmountb = mowAmountb;
 	}
 	public Integer getDemandAmountAllb() {
 		return demandAmountAllb;
