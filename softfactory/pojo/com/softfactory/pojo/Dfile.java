@@ -30,7 +30,6 @@ public class Dfile implements Serializable {
 	private Double listPrice;// 市场单价，not null
 	private Double costPrice;// 计划成本单价，not null
 	private Double realCostPrice;// 成本单价
-	private String amountUnit;// 单位
 	private String productDescribe;// 产品描述
 	private String responsiblePerson;// 产品经理
 	private String register;// 登记人
@@ -195,14 +194,6 @@ public class Dfile implements Serializable {
 
 	public void setRealCostPrice(Double realCostPrice) {
 		this.realCostPrice = realCostPrice;
-	}
-
-	public String getAmountUnit() {
-		return amountUnit;
-	}
-
-	public void setAmountUnit(String amountUnit) {
-		this.amountUnit = amountUnit;
 	}
 
 	public String getProductDescribe() {
