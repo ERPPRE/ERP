@@ -8,7 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 /**
  * 产品生产工序
  * 
- * @author shengchen
+ * @author 
  * 
  */
 public class MdProcedure implements Serializable {
