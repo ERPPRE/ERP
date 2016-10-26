@@ -6,8 +6,6 @@ import java.io.Serializable;
  * */
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 public class Manufacture implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -25,10 +23,8 @@ public class Manufacture implements Serializable {
 	private Double realLabourCostPriceSum;//实际工时总成本
 	private String designer;//工单指定人
 	private String regtster;//登记人
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
 	private Date registerTime;//登记时间
 	private String chcker;//审核人
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
 	private String checkTime;//审核时间
 	private String remark;//备注
 	private String checkTag;//审核标志

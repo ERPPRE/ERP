@@ -36,7 +36,7 @@
 				title:"产品编号",
 				width:"150"
 			},{
-				field:"productnamed",
+				field:"productname",
 				title:"产品名称",
 				width:"150"
 			},{
@@ -50,17 +50,47 @@
 			},{
 				field:"registerTime",
 				title:"登记时间",
-				width:"180"
+				width:"180",
+				formatter: function (value, row, index) {
+                                var date = new Date(value);
+                                var year = date.getFullYear().toString();
+                                var month = (date.getMonth() + 1);
+                                var day = date.getDate().toString();
+                                var hour = date.getHours().toString();
+                                var minutes = date.getMinutes().toString();
+                                var seconds = date.getSeconds().toString();
+                                if (month < 10) {
+                                    month = "0" + month;
+                                }
+                                if (day < 10) {
+                                    day = "0" + day;
+                                }
+                                if (hour < 10) {
+                                    hour = "0" + hour;
+                                }
+                                if (minutes < 10) {
+                                    minutes = "0" + minutes;
+                                }
+                                if (seconds < 10) {
+                                    seconds = "0" + seconds;
+                                }
+                                return year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds;
+                            }
+				
 			},{
-				field:"登记",
+				field:"checkTag",
 				title:"登记",
-				width:"50"
+				width:"50",
+				formatter:function(value,row,index){
+					var temp=row["manufactureid"];
+						return "<a href='lbManufactureController_detail.do?manufactureid='"+temp+">"+"登记</a>";
+				}
 			}
 			]],
 			pagination:"true",
 			pageSize:5,
 			pageList:[2,5,10,15],
-			sortName:"",
+			sortName:"MANUFACTURE_ID",
 			sortOrder:"asc"
 		});
 	});

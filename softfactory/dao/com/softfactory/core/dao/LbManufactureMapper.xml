@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.softfactory.core.dao.LbManufactureMapper">
+
+	<resultMap type="com.softfactory.pojo.Manufacture" id="manu-result">
+	<id property="id" column="ID" />
+	<result property="manufactureid" column="MANUFACTURE_ID"/>
+	<result property="productid" column="PRODUCT_ID"/>
+	<result property="productname" column="PRODUCT_NAME"/>
+	<result property="amount" column="AMOUNT"/>
+	<result property="testedAmount" column="TESTED_AMOUNT"/>
+	<result property="applyIdGroup" column="APPLY_ID_GROUP"/>
+	<result property="productDescribe" column="PRODUCT_DESCRIBE"/>
+	<result property="mouleCostPriceSum" column="MODULE_COST_PRICE_SUM"/>
+	<result property="realModuleCostPriceSum" column="REAL_MODULE_COST_PRICE_SUM"/>
+	<result property="labourCostPriceSum" column="LABOUR_COST_PRICE_SUM"/>
+	<result property="realLabourCostPriceSum" column="REAL_LABOUR_COST_PRICE_SUM"/>
+	<result property="designer" column="DESIGNER"/>
+	<result property="regtster" column="REGISTER"/>
+	<result property="registerTime" column="REGISTER_TIME"/>
+	<result property="chcker" column="CHECKER"/>
+	<result property="checkTime" column="CHECK_TIME"/>
+	<result property="remark" column="REMARK"/>
+	<result property="checkTag" column="CHECK_TAG"/>
+	<result property="manufactureProcedureTag" column="MANUFACTURE_PROCEDURE_TAG"/>
+	</resultMap>
+
+	<sql id="pageSQLHead">
+		select MANUFACTURE_ID,PRODUCT_ID, PRODUCT_NAME,AMOUNT,APPLY_ID_GROUP,REGISTER_TIME,CHECK_TAG from
+		(select row_number() over(
+	</sql>
+
+	<!-- <sql id="orderBy">
+		<if test="sort != null and order != null">
+			order by
+			<choose>
+				<when test="sort == 'id'">ID</when>
+				<when test="sort == 'name'">NAME</when>
+				<when test="sort == 'seq'">SEQ</when>
+				<when test="sort == 'descn'">DESCN</when>
+				<otherwise>MANUFACTURE_ID</otherwise>
+			</choose>
+
+			<if test="order == 'asc'">asc</if>
+			<if test="order == 'desc'">desc</if>
+		</if>
+	</sql> -->
+
+	<!-- <sql id="WhereClase">
+		<where>
+			1=1
+			<if test="name != null and name != ''">
+				and NAME LIKE #{name}
+			</if>
+			<if test="descn != null and descn != ''">
+				and DESCN LIKE #{descn}
+			</if>
+			<if test="parentId != null and parentId > 0">
+				and PARENT_ID = #{parentId}
+			</if>
+		</where>
+	</sql> -->
+
+	<sql id="pageSQLFoot">
+    <![CDATA[ ) where rn > #{pageno} and rn <= #{pagesize} ]]>
+	</sql>
+
+	<select id="findPager" resultMap="manu-result">
+		<include refid="pageSQLHead" />
+		<!-- <include refid="orderBy" /> -->
+		) rn,m.* from M_MANUFACTURE m
+		<!-- <include refid="WhereClase" /> -->
+		<include refid="pageSQLFoot" />
+	</select>
+
+
+	<select id="findPagerTotal" resultType="long">
+		select count(ID) from M_MANUFACTURE
+		<!-- <include refid="WhereClase" /> -->
+	</select>
+	
+	<select id="findById" resultMap="manu-result">
+		select * from M_MANUFACTURE where MANUFACTURE_ID=#{manufactureid}
+	</select>
+	
+</mapper>
