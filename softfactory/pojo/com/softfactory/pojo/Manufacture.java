@@ -6,6 +6,8 @@ import java.io.Serializable;
  * */
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Manufacture implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -17,15 +19,17 @@ public class Manufacture implements Serializable {
 	private Integer testedAmount;//合格数量
 	private String applyIdGroup;//生产计划序号组
 	private String productDescribe;//产品描述
-	private Double MouleCostPriceSum;//设计物料总成本
-	private Double RealModuleCostPriceSum;//实际物料总成本
-	private Double LabourCostPriceSum;//设计工时总成本
-	private Double RealLabourCostPriceSum;//实际工时总成本
-	private String Designer;//工单指定人
-	private String Regtster;//登记人
-	private Date RegisterTime;//登记时间
-	private String Chcker;//审核人
-	private String CheckTime;//审核时间
+	private Double mouleCostPriceSum;//设计物料总成本
+	private Double realModuleCostPriceSum;//实际物料总成本
+	private Double labourCostPriceSum;//设计工时总成本
+	private Double realLabourCostPriceSum;//实际工时总成本
+	private String designer;//工单指定人
+	private String regtster;//登记人
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
+	private Date registerTime;//登记时间
+	private String chcker;//审核人
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
+	private String checkTime;//审核时间
 	private String remark;//备注
 	private String checkTag;//审核标志
 	private String manufactureProcedureTag;//生产过程标志
@@ -99,75 +103,75 @@ public class Manufacture implements Serializable {
 	}
 
 	public Double getMouleCostPriceSum() {
-		return MouleCostPriceSum;
+		return mouleCostPriceSum;
 	}
 
 	public void setMouleCostPriceSum(Double mouleCostPriceSum) {
-		MouleCostPriceSum = mouleCostPriceSum;
+		this.mouleCostPriceSum = mouleCostPriceSum;
 	}
 
 	public Double getRealModuleCostPriceSum() {
-		return RealModuleCostPriceSum;
+		return realModuleCostPriceSum;
 	}
 
 	public void setRealModuleCostPriceSum(Double realModuleCostPriceSum) {
-		RealModuleCostPriceSum = realModuleCostPriceSum;
+		this.realModuleCostPriceSum = realModuleCostPriceSum;
 	}
 
 	public Double getLabourCostPriceSum() {
-		return LabourCostPriceSum;
+		return labourCostPriceSum;
 	}
 
 	public void setLabourCostPriceSum(Double labourCostPriceSum) {
-		LabourCostPriceSum = labourCostPriceSum;
+		this.labourCostPriceSum = labourCostPriceSum;
 	}
 
 	public Double getRealLabourCostPriceSum() {
-		return RealLabourCostPriceSum;
+		return realLabourCostPriceSum;
 	}
 
 	public void setRealLabourCostPriceSum(Double realLabourCostPriceSum) {
-		RealLabourCostPriceSum = realLabourCostPriceSum;
+		this.realLabourCostPriceSum = realLabourCostPriceSum;
 	}
 
 	public String getDesigner() {
-		return Designer;
+		return designer;
 	}
 
 	public void setDesigner(String designer) {
-		Designer = designer;
+		this.designer = designer;
 	}
 
 	public String getRegtster() {
-		return Regtster;
+		return regtster;
 	}
 
 	public void setRegtster(String regtster) {
-		Regtster = regtster;
+		this.regtster = regtster;
 	}
 
 	public Date getRegisterTime() {
-		return RegisterTime;
+		return registerTime;
 	}
 
 	public void setRegisterTime(Date registerTime) {
-		RegisterTime = registerTime;
+		this.registerTime = registerTime;
 	}
 
 	public String getChcker() {
-		return Chcker;
+		return chcker;
 	}
 
 	public void setChcker(String chcker) {
-		Chcker = chcker;
+		this.chcker = chcker;
 	}
 
 	public String getCheckTime() {
-		return CheckTime;
+		return checkTime;
 	}
 
 	public void setCheckTime(String checkTime) {
-		CheckTime = checkTime;
+		this.checkTime = checkTime;
 	}
 
 	public String getRemark() {
