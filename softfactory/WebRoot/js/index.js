@@ -12,10 +12,12 @@ $(function() {
 		onClick : function(node) {
 			var flag = $("#divtabs").tabs("exists", node.text);
 			if (!flag) {//选项卡面板不存在
+				var content = '<iframe scrolling="no" frameborder="0"'+
+		           'src="'+node.url+'" style="width:100%;height:100%;"></iframe>';
 				$("#divtabs").tabs("add", {
 					title : node.text,
 					closable : true,
-					href : node.url
+					content : content
 				});
 			}
 		}
