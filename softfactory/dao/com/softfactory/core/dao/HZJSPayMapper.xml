@@ -76,7 +76,7 @@
     <![CDATA[ ) where rn > #{pageno} and rn <= #{pagesize} ]]>
 	</sql>
 
-	<select id="findPager" resultMap="spaydetails-result">
+	<select id="findPager" resultMap="spay-result">
 		<include refid="pageSQLHead" />
 		<include refid="orderBy" />
 		) rn,e.* from S_PAY_DETAILS e
