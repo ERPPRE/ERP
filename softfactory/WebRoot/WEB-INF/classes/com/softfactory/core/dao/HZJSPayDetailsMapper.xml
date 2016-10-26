@@ -67,7 +67,7 @@
 		<include refid="pageSQLHead" />
 		<include refid="orderBy" />
 		) rn,e.* from S_PAY_DETAILS e
-		<include refid="WhereCase" />
+		<include refid="WhereCase"/>
 		<include refid="pageSQLFoot" />
 	</select>
 

@@ -23,7 +23,7 @@ public class HZJSPayServisce {
 		// 设置分页数据
 		pager.setRows(hzjspayMapper.findPager(pageno, pagesize, sort, order,
 				payId));
-		// 设置数据总数
+		// 设置数据总数 
 		pager.setTotal(hzjspayMapper.findPagerTotal(payId));
 		return pager;
 	}

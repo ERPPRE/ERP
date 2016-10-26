@@ -20,7 +20,7 @@ public class HZJSPayDetailsServisce {
 	public Pager<SPayDetails> findPager(Integer pageno, Integer pagesize, String sort,
 			String order, String parentId) {
 		Pager<SPayDetails> pager = new Pager<SPayDetails>();
-		// 设置分页数据
+		// 设置分页数据 
 		pager.setRows(hzjspaydetailsMapper.findPager(pageno, pagesize, sort, order,
 				parentId));
 		// 设置数据总数

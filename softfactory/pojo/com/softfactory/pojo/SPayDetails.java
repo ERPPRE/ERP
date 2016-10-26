@@ -3,7 +3,7 @@ package com.softfactory.pojo;
 import java.io.Serializable;
 
 /**
- * 入库明细
+ * 入库明细 
  * @author huzjian
  *
  */

@@ -99,7 +99,7 @@
 		<include refid="orderBy" />
 		) rn,e.* from S_PAY e
 		<include refid="WhereCase" />
-		<include refid="pageSQLFoot" />
+		<include refid="pageSQLFoot"/>
 	</select>
 
 	<select id="findPagerTotal" resultType="long">

@@ -19,7 +19,7 @@ public class SPayDetailsText {
 
 	  @Test
 	  public void findPager() {
-	    // easyi 必需的参数
+	    // easyi 必需的参数 
 	    Integer page = 1;
 	    Integer rows = 5;
 	    String sort = "parentId";

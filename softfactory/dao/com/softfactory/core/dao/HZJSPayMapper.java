@@ -19,7 +19,7 @@ import com.softfactory.pojo.SPay;
 @Repository("hzjspayMapper")
 public interface HZJSPayMapper {
 	/**
-	 * 新增入库
+	 * 新增入库 
 	 */
 	@Insert("insert into SPAY(ID,PAY_ID,STORER,REASON,REASONEXACT,AMOUNT_SUM,COST_PRICE_SUM,PAID_AMOUNT_SUM,REMARK,REGISTER,REGISTER_TIME,CHECKER,CHECK_TIME,CHECK_TAG,ATTEMPER,ATTEMPER_TIME,PRODUCT_ID,STORE_TAG，DEMAND_AMOUNTB,REAL_AMOUNTB,NOW_AMOUNTB,DEMAND_AMOUNT_ALLB,REAL_AMOUNT_ALLB,DEMAND_SAL_ALLB,REAL_SAL_ALLB)values({#id},{#payId},{#storer},{#reason},{#reasonexact},{#amountSum},{#costPriceSum},{#paidAmountSum},{#remark},{#register},{#registerTime},{#checker},{#checkTime},{#checkTag},{#attmper},{#attemperTime},{#productId},{#storeTag},{#demandAmountb},{#realAmoutb},{#nowAmountb},{#demandAmountAllb},{#realAmountAllb},{#demandSalAllb},{#realSalAllb}")
 	@SelectKey(statement = "select SEQ_SYS_USER.nextval from dual", keyProperty = "id", before = true, resultType = int.class)

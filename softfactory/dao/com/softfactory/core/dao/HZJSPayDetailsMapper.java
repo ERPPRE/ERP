@@ -18,7 +18,7 @@ import com.softfactory.pojo.SPayDetails;
 @Repository("hzjspaydetailsMapper")
 public interface HZJSPayDetailsMapper {
 	/**
-	 * 新增入库明细
+	 * 新增入库明细 
 	 */
 	@Insert("insert into SPAY(ID,PARENT_ID,PRODUCT_ID,PRODUCT_NAME,PRODUCT_DESCRIBE,AMOUNT,AMOUNT_UNIT,COST_PRICE,SUBTOTAL,PAID_AMOUNT,PAY_TAG)values({#id},{#parentId},{#productId},{#productName},{#productDescribe},{#amount},{#amountUnit},{#costPrice},{#subtotal},{#paidAmount}，{#payTag}")
 	@SelectKey(statement = "select SEQ_SYS_USER.nextval from dual", keyProperty = "id", before = true, resultType = int.class)
