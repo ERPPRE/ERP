@@ -16,18 +16,29 @@
 		<result property="paidAmountSum" column="PAID_AMOUNT_SUM" />
 		<result property="remark" column="REMARK" />
 		<result property="register" column="REGISTER" />
-		<result property="registerTime" column="REGISTER_TIME" />
+		<result property="registerTime" column="REGISTER_TIME"
+			javaType="java.util.Date" />
 		<result property="checker" column="CHECKER" />
-		<result property="checkTime" column="CHECK_TIME" />
+		<result property="checkTime" column="CHECK_TIME" javaType="java.util.Date" />
 		<result property="checkTag" column="CHECK_TAG" />
 		<result property="attmper" column="ATTEMPER" />
-		<result property="attemperTime" column="ATTEMPER_TIME" />
+		<result property="attemperTime" column="ATTEMPER_TIME"
+			javaType="java.util.Date" />
 		<result property="productId" column="PRODUCT_ID" />
 		<result property="storeTag" column="STORE_TAG" />
+		<result property="demandAmountb" column="DEMAND_AMOUNTB" />
+		<result property="realAmoutb" column="REAL_AMOUNTB" />
+		<result property="nowAmountb" column="NOW_AMOUNTB" />
+		<result property="demandAmountAllb" column="DEMAND_AMOUNT_ALLB" />
+		<result property="realAmountAllb" column="REAL_AMOUNT_ALLB" />
+		<result property="demandSalAllb" column="DEMAND_SAL_ALLB" />
+		<result property="realSalAllb" column="REAL_SAL_ALLB" />
 	</resultMap>
 
 	<sql id="pageSQLHead">
-		select ID,PAY_ID,STORER,REASON,REASONEXACT,AMOUNT_SUM,COST_PRICE_SUM,PAID_AMOUNT_SUM,REMARK,REGISTER,REGISTER_TIME,CHECKER,CHECK_TIME,CHECK_TAG,ATTEMPER,ATTEMPER_TIME,PRODUCT_ID,STORE_TAG from
+		select
+		ID,PAY_ID,STORER,REASON,REASONEXACT,AMOUNT_SUM,COST_PRICE_SUM,PAID_AMOUNT_SUM,REMARK,REGISTER,REGISTER_TIME,CHECKER,CHECK_TIME,CHECK_TAG,ATTEMPER,ATTEMPER_TIME,PRODUCT_ID,STORE_TAG,DEMAND_AMOUNTB,REAL_AMOUNTB,NOW_AMOUNTB,DEMAND_AMOUNT_ALLB,REAL_AMOUNT_ALLB,DEMAND_SAL_ALLB,REAL_SAL_ALLB
+		from
 		(select
 		row_number()
 		over(
@@ -55,7 +66,14 @@
 				<when test="sort == 'attemperTime'">ATTEMPER_TIME</when>
 				<when test="sort == 'productId'">PRODUCT_ID</when>
 				<when test="sort == 'storeTag'">STORE_TAG</when>
-				<otherwise>PARENT_ID</otherwise>
+				<when test="sort == 'demandAmountb'">DEMAND_AMOUNTB</when>
+				<when test="sort == 'realAmoutb'">REAL_AMOUNTB</when>
+				<when test="sort == 'nowAmountb'">NOW_AMOUNTB</when>
+				<when test="sort == 'demandAmountAllb'">DEMAND_AMOUNT_ALLB</when>
+				<when test="sort == 'realAmountAllb'">REAL_AMOUNT_ALLB</when>
+				<when test="sort == 'demandSalAllb'">DEMAND_SAL_ALLB</when>
+				<when test="sort == 'realSalAllb'">REAL_SAL_ALLB</when>
+				<otherwise>PAY_ID</otherwise>
 			</choose>
 
 			<if test="order == 'asc'">asc</if>
@@ -66,8 +84,8 @@
 	<sql id="WhereCase">
 		<where>
 			1=1
-			<if test="ename != null and ename != ''">
-				and PARENT_ID LIKE #{parentId}
+			<if test="payId != null and payId != ''">
+				and PAY_ID LIKE #{payId}
 			</if>
 		</where>
 	</sql>
@@ -79,13 +97,13 @@
 	<select id="findPager" resultMap="spay-result">
 		<include refid="pageSQLHead" />
 		<include refid="orderBy" />
-		) rn,e.* from S_PAY_DETAILS e
+		) rn,e.* from S_PAY e
 		<include refid="WhereCase" />
 		<include refid="pageSQLFoot" />
 	</select>
 
 	<select id="findPagerTotal" resultType="long">
-		select count(parentId) from S_PAY_DETAILS
+		select count(PAY_ID) from S_PAY
 		<include refid="WhereCase" />
 	</select>
 </mapper>

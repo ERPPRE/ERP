@@ -17,17 +17,11 @@
 		<result property="subtotal" column="SUBTOTAL" />
 		<result property="paidAmount" column="PAID_AMOUNT" />
 		<result property="payTag" column="PAY_TAG" />
-		<result property="demandAmountb" column="DEMAND_AMOUNTB" />
-		<result property="realAmoutb" column="REAL_AMOUNTB" />
-		<result property="nowAmountb" column="NOW_AMOUNTB" />
-		<result property="demandAmountAllb" column="DEMAND_AMOUNT_ALLB" />
-		<result property="realAmountAllb" column="REAL_AMOUNT_ALLB" />
-		<result property="demandSalAllb" column="DEMAND_SAL_ALLB" />
-		<result property="realSalAllb" column="REAL_SAL_ALLB" />
+
 	</resultMap>
 
 	<sql id="pageSQLHead">
-		select ID,PARENT_ID,PRODUCT_ID,PRODUCT_NAME,PRODUCT_DESCRIBE,AMOUNT,AMOUNT_UNIT,COST_PRICE,SUBTOTAL,PAID_AMOUNT,PAY_TAGDEMAN,D_AMOUNTB,REAL_AMOUNTB,NOW_AMOUNTB,DEMAND_AMOUNT_ALLB,REAL_AMOUNT_ALLB,DEMAND_SAL_ALLB,REAL_SAL_ALLB from
+		select ID,PARENT_ID,PRODUCT_ID,PRODUCT_NAME,PRODUCT_DESCRIBE,AMOUNT,AMOUNT_UNIT,COST_PRICE,SUBTOTAL,PAID_AMOUNT,PAY_TAG from
 		(select
 		row_number()
 		over(
@@ -48,13 +42,6 @@
 				<when test="sort == 'subtotal'">SUBTOTAL</when>
 				<when test="sort == 'paidAmount'">PAID_AMOUNT</when>
 				<when test="sort == 'payTag'">PAY_TAG</when>
-				<when test="sort == 'demandAmountb'">DEMAND_AMOUNTB</when>
-				<when test="sort == 'realAmoutb'">REAL_AMOUNTB</when>
-				<when test="sort == 'nowAmountb'">NOW_AMOUNTB</when>
-				<when test="sort == 'demandAmountAllb'">DEMAND_AMOUNT_ALLB</when>
-				<when test="sort == 'realAmountAllb'">REAL_AMOUNT_ALLB</when>
-				<when test="sort == 'demandSalAllb'">DEMAND_SAL_ALLB</when>
-				<when test="sort == 'realSalAllb'">REAL_SAL_ALLB</when>
 				<otherwise>PARENT_ID</otherwise>
 			</choose>
 
@@ -66,7 +53,7 @@
 	<sql id="WhereCase">
 		<where>
 			1=1
-			<if test="ename != null and ename != ''">
+			<if test="parentId != null and parentId != ''">
 				and PARENT_ID LIKE #{parentId}
 			</if>
 		</where>
@@ -85,7 +72,7 @@
 	</select>
 
 	<select id="findPagerTotal" resultType="long">
-		select count(parentId) from S_PAY_DETAILS
+		select count(PARENT_ID) from S_PAY_DETAILS
 		<include refid="WhereCase" />
 	</select>
 </mapper>

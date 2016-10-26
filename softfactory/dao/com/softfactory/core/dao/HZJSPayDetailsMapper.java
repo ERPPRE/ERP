@@ -2,26 +2,34 @@ package com.softfactory.core.dao;
 
 import java.util.List;
 
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.SelectKey;
+import org.springframework.stereotype.Repository;
 
-import com.softfactory.pojo.SPay;
+import com.softfactory.pojo.SPayDetails;
 
+/**
+ * 入库明细映射接口
+ * @author Administrator
+ *
+ */
+@Repository("hzjspaydetailsMapper")
 public interface HZJSPayDetailsMapper {
 	/**
 	 * 新增入库明细
 	 */
-	@Insert("insert into SPAY(ID,PARENT_ID,PRODUCT_ID,PRODUCT_NAME,PRODUCT_DESCRIBE,AMOUNT,AMOUNT_UNIT,COST_PRICE,SUBTOTAL,PAID_AMOUNT,PAY_TAG,DEMAND_AMOUNTB,REAL_AMOUNTB,NOW_AMOUNTB,DEMAND_AMOUNT_ALLB,REAL_AMOUNT_ALLB,DEMAND_SAL_ALLB,REAL_SAL_ALLB)values({#id},{#parentId},{#productId},{#productName},{#productDescribe},{#amount},{#amountUnit},{#costPrice},{#subtotal},{#paidAmount}，{#payTag},{#demandAmountb},{#realAmoutb},{#nowAmountb},{#demandAmountAllb},{#realAmountAllb},{#demandSalAllb},{#realSalAllb}")
-	@SelectKey(statement = "select SEQ_SYS_USER.nextval from dual", keyProperty = "parentId", before = true, resultType = int.class)
-	int add(SPay spay);
+	@Insert("insert into SPAY(ID,PARENT_ID,PRODUCT_ID,PRODUCT_NAME,PRODUCT_DESCRIBE,AMOUNT,AMOUNT_UNIT,COST_PRICE,SUBTOTAL,PAID_AMOUNT,PAY_TAG)values({#id},{#parentId},{#productId},{#productName},{#productDescribe},{#amount},{#amountUnit},{#costPrice},{#subtotal},{#paidAmount}，{#payTag}")
+	@SelectKey(statement = "select SEQ_SYS_USER.nextval from dual", keyProperty = "id", before = true, resultType = int.class)
+	int add(SPayDetails spaydetails);
 
 	
 
 	/**
 	 * 分页查询+条件查询入库明细
 	 */
-	List<SPay> findPager(
+	List<SPayDetails> findPager(
 			@Param("pageno") Integer pageno,
 			@Param("pagesize") Integer pagesize, 
 			@Param("sort") String sort,
@@ -34,4 +42,13 @@ public interface HZJSPayDetailsMapper {
 	   * @return
 	   */
 	  long findPagerTotal(@Param("parentId") String parentId);
+	  
+	  
+	  /**
+	   * 根据ID查询
+	   * @param 
+	   * @return
+	   */
+	  SPayDetails findById(Integer parentId);
+	  
 }

@@ -23,13 +23,7 @@ public class SPayDetails implements Serializable {
 	private Double subtotal;//小计
 	private Integer paidAmount;//确认入库件数
 	private String payTag;//入库标志
-	private Integer demandAmountb;//已入库件数
-	private Integer realAmoutb;// 应出库件数
-	private Integer nowAmountb;// 已出库件数
-	private Integer demandAmountAllb;// 本次出库数量
-	private Integer realAmountAllb;// 已出库总件数
-	private Integer demandSalAllb;// 应出库总件数
-	private Integer realSalAllb;// 已出库总成本
+
 	
 	
 	public SPayDetails(){
@@ -101,48 +95,7 @@ public class SPayDetails implements Serializable {
 	public void setPayTag(String payTag) {
 		this.payTag = payTag;
 	}
-	public Integer getDemandAmountb() {
-		return demandAmountb;
-	}
-	public void setDemandAmountb(Integer demandAmountb) {
-		this.demandAmountb = demandAmountb;
-	}
-	public Integer getRealAmoutb() {
-		return realAmoutb;
-	}
-	public void setRealAmoutb(Integer realAmoutb) {
-		this.realAmoutb = realAmoutb;
-	}
-	public Integer getNowAmountb() {
-		return nowAmountb;
-	}
-	public void setNowAmountb(Integer mowAmountb) {
-		this.nowAmountb = mowAmountb;
-	}
-	public Integer getDemandAmountAllb() {
-		return demandAmountAllb;
-	}
-	public void setDemandAmountAllb(Integer demandAmountAllb) {
-		this.demandAmountAllb = demandAmountAllb;
-	}
-	public Integer getRealAmountAllb() {
-		return realAmountAllb;
-	}
-	public void setRealAmountAllb(Integer realAmountAllb) {
-		this.realAmountAllb = realAmountAllb;
-	}
-	public Integer getDemandSalAllb() {
-		return demandSalAllb;
-	}
-	public void setDemandSalAllb(Integer demandSalAllb) {
-		this.demandSalAllb = demandSalAllb;
-	}
-	public Integer getRealSalAllb() {
-		return realSalAllb;
-	}
-	public void setRealSalAllb(Integer realSalAllb) {
-		this.realSalAllb = realSalAllb;
-	}
+	
 	
 	
 	
